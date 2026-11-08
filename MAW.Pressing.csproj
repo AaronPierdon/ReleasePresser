@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- The "Release Presser" engine: a byte-for-byte copy of the stress-tested Pressing.Core.
+       Kept as its own project (not folded into MAW.Core) so Pressing's exact compile
+       semantics are preserved - Nullable + ImplicitUsings ENABLED, just as the original -
+       guaranteeing the logic, fuzzy matching, lookup order and tool-use order are unchanged.
+       Only the target framework moved (net8.0 -> net9.0) to match the rest of MAW. -->
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Pressing.Core</RootNamespace>
+    <AssemblyName>MAW.Pressing</AssemblyName>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Version>0.5.0</Version>
+    <!-- TagLibSharp targets netstandard2.0; NU1701 = restored against a non-net target (harmless, as in MAW.csproj) -->
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TagLibSharp" Version="2.3.0" />
+  </ItemGroup>
+
+</Project>
